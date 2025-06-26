@@ -1,0 +1,29 @@
+name: QM Music
+package: community.lazycat.app.qmmusic
+version: 1.9.2
+description: 轻量级私有云音乐服务器。
+homepage: https://github.com/chenqimiao/qm-music
+author: chenqimiao
+application:
+  subdomain: qmmusic
+  background_task: true
+  public_path:
+    - /  
+  routes:
+    - /=http://qmmusic:6688
+services:
+  qmmusic:
+    image: docker.1ms.run/qmmusic/qm-music:v1.9.2
+    binds:
+      - /lzcapp/var/music:/data/qm-music/music_dir
+      - /lzcapp/var/db:/data/qm-music/db
+      - /lzcapp/cache/qmmusic:/data/qm-music/cache
+    environment:
+      - QM_FFMPEG_ENABLE=true
+      - TZ=Asia/Shanghai
+      - QM_SPOTIFY_ENABLE=false
+      - QM_SPOTIFY_CLIENT_ID=[QM_SPOTIFY_CLIENT_ID]
+      - QM_SPOTIFY_CLIENT_SECRET=[QM_SPOTIFY_CLIENT_SECRET]
+      - QM_LASTFM_ENABLE=false
+      - QM_LASTFM_API_KEY=[QM_LASTFM_API_KEY]
+      - QM_REFRESH_AUTO=true
