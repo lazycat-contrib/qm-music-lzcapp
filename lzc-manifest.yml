@@ -6,11 +6,10 @@ application:
   upstreams:
     - location: /
       backend: http://qmmusic:6688/
-
 services:
   qmmusic:
-    # upstream: qmmusic/qm-music:v1.9.2
-    image: docker.1ms.run/qmmusic/qm-music:v1.9.2
+    # upstream: qmmusic/qm-music:v2.5.0
+    image: docker.1ms.run/qmmusic/qm-music:v2.5.0
     environment:
       - QM_FFMPEG_ENABLE=true
       - TZ=Asia/Shanghai
